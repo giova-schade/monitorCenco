@@ -1,0 +1,15 @@
+<div class="grid fluid content">
+    <div class="col-12">
+        <div class="card">
+            <p-progressBar *ngIf="loadingPage" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+            <p-blockUI [blocked]="loadingPage" [style]="{'z-index': '2'}"></p-blockUI>
+
+            <p-toast position="top-right" [life]="5000"></p-toast>
+            <div class="card-header">
+                <h1>configuration-main works!</h1>
+
+            </div>
+        </div>
+    </div>
+
+</div>

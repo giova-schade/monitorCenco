@@ -1,0 +1,9 @@
+<div class="sasjs-ui">
+  <div class="sasjs-root">
+    <sasjs-login-modal
+      *ngIf="!isLoggedIn"
+      [loginLoading]="loginLoading"
+      (loginButtonClicked)="login($event)"
+    ></sasjs-login-modal>
+  </div>
+</div>

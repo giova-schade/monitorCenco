@@ -1,0 +1,51 @@
+{
+  "$schema": "https://cli.sasjs.io/sasjsconfig-schema.json",
+  "macroFolders": [
+    "sasjs/macros"
+  ],
+  "programFolders": [
+    "sasjs/MONITORBD"
+  ],
+  "serviceConfig": {
+    "serviceFolders": [
+      "sasjs/services/common",
+      "sasjs/services/files"
+    ],
+    "initProgram": "sasjs/init.sas"
+  },
+  "jobConfig": {
+    "jobFolders": [
+      "sasjs/jobs/admin"
+    ],
+    "initProgram": "sasjs/init.sas"
+  },
+  "defaultTarget": "boleta",
+  "targets": [
+    {
+      "name": "server",
+      "syncFolder": "sasjs/mocks",
+      "serverUrl": "http://localhost:5000",
+      "serverType": "SASJS",
+      "appLoc": "/Monitor/sas9",
+      "streamConfig": {
+        "streamLogo": "assets/img/logo.jpg",
+        "streamServiceName": "Monitor",
+        "streamWeb": true,
+        "streamWebFolder": "web",
+        "webSourcePath": "dist/BE"
+      }
+    },
+    {
+      "name": "Monitor",
+      "serverUrl": "http://clsmv3sas011.cencosud.corp:7980",
+      "serverType": "SAS9",
+      "appLoc": "/Public/app/Monitor",
+      "deployConfig": {
+        "deployServicePack": true,
+        "deployScripts": []
+      },
+      "serverName": "SASApp",
+      "repositoryName": "Foundation"
+    }
+  ]
+}
