@@ -5,9 +5,22 @@
             <p-blockUI [blocked]="loadingPage" [style]="{'z-index': '2'}"></p-blockUI>
 
             <p-toast position="top-right" [life]="5000"></p-toast>
-            <div class="card-header">
-                <h1>configuration-main works!</h1>
+            <div class=" col-sm-12">
 
+                <p-tabView [(activeIndex)]="activeIndex" [scrollable]="true" (onChange)="handleChange($event)">
+
+                    <p-tabPanel header="Atributos">
+                        <div class="card-body">
+                            <div class="grid">
+                                
+
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+                    
+                </p-tabView>
+                
             </div>
         </div>
     </div>

@@ -7,10 +7,16 @@ import { Component } from '@angular/core';
 })
 export class ConfigurationMainComponent {
   loadingPage: boolean;
+  activeIndex: number = 0;
+
 constructor(){
   this.loadingPage = false;
 }
 ngOnInit(){
   
+}
+
+public handleChange(event: any ){
+
 }
 }

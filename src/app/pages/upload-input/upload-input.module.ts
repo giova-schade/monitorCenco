@@ -15,6 +15,9 @@ import { MessagesModule } from 'primeng/messages';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { MessageModule } from 'primeng/message';
 import { TabViewModule } from 'primeng/tabview';
+import { PanelModule } from 'primeng/panel';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,6 @@ import { TabViewModule } from 'primeng/tabview';
     TabViewModule,
     CommonModule,
     ToastModule,
-    ToastModule,
     BlockUIModule,
     MessageModule,
     CalendarModule,
@@ -33,7 +35,13 @@ import { TabViewModule } from 'primeng/tabview';
     InputTextareaModule,
     ButtonModule,
     MessagesModule,
-    ProgressBarModule
+    ProgressBarModule,
+    PanelModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TableModule
+    
+    
   ]
 })
 export class UploadInputModule { }

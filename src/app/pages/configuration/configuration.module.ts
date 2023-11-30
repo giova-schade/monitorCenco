@@ -11,6 +11,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { TabViewModule } from 'primeng/tabview';
+import { PanelModule } from 'primeng/panel';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
 
 
 
@@ -19,8 +23,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     ConfigurationMainComponent
   ],
   imports: [
+    TabViewModule,
     CommonModule,
-    ToastModule,
     ToastModule,
     BlockUIModule,
     MessageModule,
@@ -30,7 +34,12 @@ import { ProgressBarModule } from 'primeng/progressbar';
     InputTextareaModule,
     ButtonModule,
     MessagesModule,
-    ProgressBarModule
+    ProgressBarModule,
+    PanelModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TableModule
+    
   ]
 })
 export class ConfigurationModule { }

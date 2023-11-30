@@ -7,15 +7,15 @@
             <p-toast position="top-right" [life]="5000"></p-toast>
             <div class=" col-sm-12">
 
-                <p-tabView>
+                <p-tabView [(activeIndex)]="activeIndex" [scrollable]="true" (onChange)="handleChange($event)">
 
-                    <p-tabPanel header="Input 1">
+                    <p-tabPanel header="Atributos">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,1)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,1)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
@@ -23,158 +23,192 @@
                                     </div>
                                     <div class="files-list">
                                         <div class="single-file" *ngFor="let file of files; let i = index">
-                                            <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
+                                            <img src="/assets/img/dnd/ic-texto.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
                                                 <p class="size">{{ formatBytes(file?.size) }}</p>
                                             </div>
                                             <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
-                                                alt="file" (click)="deleteFile(i)">
+                                                alt="file" (click)="deleteFile(1)">
                                         </div>
                                     </div>
 
                                 </div>
+                              
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(1)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(1)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(1)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 2">
+                    <p-tabPanel header="Categoria Subrubros">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,2)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,2)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files2; let i = index">
+                                            <img src="/assets/img/dnd/ic-texto.svg" width="45px" alt="file">
+                                            <div class="info">
+                                                <h4 class="name">{{ file?.name }}</h4>
+                                                <p class="size">{{ formatBytes(file?.size) }}</p>
+                                            </div>
+                                            <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
+                                                alt="file" (click)="deleteFile(2)">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(2)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(2)"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+                    <p-tabPanel header="Cristerio Envio SAP">
+                        <div class="card-body">
+                            <div class="grid">
+                                <div class="col-12">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,3)">
+                                        <input type="file" #fileDropRef id="fileDropRef" multiple
+                                            (change)="fileBrowseHandler($event,3)" />
+                                        <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
+                                        <h3>Arrastra y suelta el archivo aquí</h3>
+                                        <h3>o</h3>
+                                        <label for="fileDropRef">Selecciona el archivo</label>
+                                    </div>
+                                    <div class="files-list">
+                                        <div class="single-file" *ngFor="let file of files3; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
                                                 <p class="size">{{ formatBytes(file?.size) }}</p>
                                             </div>
                                             <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
-                                                alt="file" (click)="deleteFile(i)">
+                                                alt="file" (click)="deleteFile(3)">
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(2)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(3)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(3)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 3">
+                    <p-tabPanel header="Definicion Ejecución Procesos Analiticos">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,4)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,4)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files4; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
                                                 <p class="size">{{ formatBytes(file?.size) }}</p>
                                             </div>
                                             <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
-                                                alt="file" (click)="deleteFile(i)">
+                                                alt="file" (click)="deleteFile(4)">
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(3)"></button>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </p-tabPanel>
-                    <p-tabPanel header="Input 4">
-                        <div class="card-body">
-                            <div class="grid">
-                                <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
-                                        <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
-                                        <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
-                                        <h3>Arrastra y suelta el archivo aquí</h3>
-                                        <h3>o</h3>
-                                        <label for="fileDropRef">Selecciona el archivo</label>
-                                    </div>
-                                    <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
-                                            <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
-                                            <div class="info">
-                                                <h4 class="name">{{ file?.name }}</h4>
-                                                <p class="size">{{ formatBytes(file?.size) }}</p>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(4)"></button>
                                             </div>
-                                            <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
-                                                alt="file" (click)="deleteFile(i)">
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(4)"></button>
+                                            </div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(4)"></button>
-                                    </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 5">
+                    <p-tabPanel header="Promociones Cruzadas">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,5)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,5)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files5; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
@@ -187,32 +221,40 @@
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(1)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(5)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(5)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 6">
+                    <p-tabPanel header="Cierre locales domingo">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,6)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
-                                        <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
+                                            (change)="fileBrowseHandler($event,6)" />
+                                        <img src="/assets/img/dnd/ic-texto.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files6; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
@@ -225,32 +267,40 @@
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(1)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(6)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(6)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 7">
+                    <p-tabPanel header="Categorias Bloque1">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,7)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,7)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files7; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
@@ -263,32 +313,40 @@
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(1)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(7)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(7)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 8">
+                    <p-tabPanel header="Productos y tiendas espejo">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,8)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,8)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files8; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
@@ -301,32 +359,40 @@
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(1)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(8)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(8)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 9">
+                    <p-tabPanel header="Eventos">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,9)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,9)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files9; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
@@ -339,58 +405,261 @@
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(1)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(9)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(9)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
-                    <p-tabPanel header="Input 10">
+                    <p-tabPanel header="RAPEL">
                         <div class="card-body">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,10)">
                                         <input type="file" #fileDropRef id="fileDropRef" multiple
-                                            (change)="fileBrowseHandler($event)" />
+                                            (change)="fileBrowseHandler($event,10)" />
                                         <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
                                         <h3>Arrastra y suelta el archivo aquí</h3>
                                         <h3>o</h3>
                                         <label for="fileDropRef">Selecciona el archivo</label>
                                     </div>
                                     <div class="files-list">
-                                        <div class="single-file" *ngFor="let file of files; let i = index">
+                                        <div class="single-file" *ngFor="let file of files10; let i = index">
                                             <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
                                             <div class="info">
                                                 <h4 class="name">{{ file?.name }}</h4>
                                                 <p class="size">{{ formatBytes(file?.size) }}</p>
                                             </div>
                                             <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
-                                                alt="file" (click)="deleteFile(i)">
+                                                alt="file" (click)="deleteFile(10)">
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="col-12">
-                                    <!-- Botón fuera del container de la subida de archivo -->
-                                    <div class="form-group p-fluid">
-                                        <button pButton type="button" label="Subir datos"
-                                            (click)="cargarInput(10)"></button>
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(10)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(10)"></button>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                         </div>
 
                     </p-tabPanel>
+                    <p-tabPanel header="ILA">
+                        <div class="card-body">
+                            <div class="grid">
+                                <div class="col-12">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,10)">
+                                        <input type="file" #fileDropRef id="fileDropRef" multiple
+                                            (change)="fileBrowseHandler($event,11)" />
+                                        <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
+                                        <h3>Arrastra y suelta el archivo aquí</h3>
+                                        <h3>o</h3>
+                                        <label for="fileDropRef">Selecciona el archivo</label>
+                                    </div>
+                                    <div class="files-list">
+                                        <div class="single-file" *ngFor="let file of files11; let i = index">
+                                            <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
+                                            <div class="info">
+                                                <h4 class="name">{{ file?.name }}</h4>
+                                                <p class="size">{{ formatBytes(file?.size) }}</p>
+                                            </div>
+                                            <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
+                                                alt="file" (click)="deleteFile(11)">
+                                        </div>
+                                    </div>
 
+                                </div>
+                                <div class="col-12">
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(11)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(11)"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+                    <p-tabPanel header="Parametros por defecto simulador">
+                        <div class="card-body">
+                            <div class="grid">
+                                <div class="col-12">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,10)">
+                                        <input type="file" #fileDropRef id="fileDropRef" multiple
+                                            (change)="fileBrowseHandler($event,12)" />
+                                        <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
+                                        <h3>Arrastra y suelta el archivo aquí</h3>
+                                        <h3>o</h3>
+                                        <label for="fileDropRef">Selecciona el archivo</label>
+                                    </div>
+                                    <div class="files-list">
+                                        <div class="single-file" *ngFor="let file of files12; let i = index">
+                                            <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
+                                            <div class="info">
+                                                <h4 class="name">{{ file?.name }}</h4>
+                                                <p class="size">{{ formatBytes(file?.size) }}</p>
+                                            </div>
+                                            <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
+                                                alt="file" (click)="deleteFile(12)">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(12)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(12)"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+                    <p-tabPanel header="Reprocesos analiticos">
+                        <div class="card-body">
+                            <div class="grid">
+                                <div class="col-12">
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event,10)">
+                                        <input type="file" #fileDropRef id="fileDropRef" multiple
+                                            (change)="fileBrowseHandler($event,13)" />
+                                        <img src="/assets/img/dnd/ic-upload-file.svg" alt="">
+                                        <h3>Arrastra y suelta el archivo aquí</h3>
+                                        <h3>o</h3>
+                                        <label for="fileDropRef">Selecciona el archivo</label>
+                                    </div>
+                                    <div class="files-list">
+                                        <div class="single-file" *ngFor="let file of files13; let i = index">
+                                            <img src="/assets/img/dnd/ic-file-excel.svg" width="45px" alt="file">
+                                            <div class="info">
+                                                <h4 class="name">{{ file?.name }}</h4>
+                                                <p class="size">{{ formatBytes(file?.size) }}</p>
+                                            </div>
+                                            <img src="/assets/img/dnd/ic-delete-file.svg" class="delete" width="20px"
+                                                alt="file" (click)="deleteFile(13)">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <div class="grid">
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Subir datos"
+                                                    (click)="cargarInput(13)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group p-fluid">
+                                                <button pButton type="button" label="Descargar"
+                                                    (click)="Download(13)"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
                 </p-tabView>
+                  <!-- Nueva sección para la p-table -->
+                  <div class="card-body">
+                    <div class="col-12" *ngIf="datasource && datasource.length > 0">
+                        <p-panel header="Datos Archivos" [toggleable]="true">
+                            <p-table #datos [columns]="fieldCampos" [value]="datasource" [rowHover]="true"
+                                [rows]="10" [showCurrentPageReport]="true" [loading]="loading"
+                                [paginator]="true"
+                                currentPageReportTemplate="Mostrar {first} hasta {last} de {totalRecords} datos"
+                                [filterDelay]="0" [resizableColumns]="true" [responsive]="true"
+                                [autoLayout]="true" [globalFilterFields]="fieldCampos.field"
+                                styleClass="tabla" *ngIf="Fieldview" sortMode="multiple"
+                                [reorderableColumns]="true">
+                                <ng-template pTemplate="caption">
+                                    <div class="flex">
+                                        <button pButton label="Limpiar"
+                                            class="p-button-outlined custom-button"
+                                            icon="pi pi-filter-slash" (click)="clear(datos)">
+                                        </button>
+                                        <span class="p-input-icon-left p-ml-auto">
+                                            <i class="pi pi-search"></i>
+                                            <input pInputText type="text"
+                                                (input)="applyFilterGlobal($event, 'contains')"
+                                                placeholder="Filtrar" class="custom-filter-button" />
+                                        </span>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="header" let-columns>
+                                    <tr>
+                                        <th *ngFor="let col of columns">
+                                            <p-columnFilter type="text"
+                                                [field]="col.field"></p-columnFilter>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th *ngFor="let col of columns" pSortableColumn="{{col.field}}"
+                                            pReorderableColumn>
+                                            {{col.field}}
+                                            <p-sortIcon field="{{col.field}}">
+                                            </p-sortIcon>
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                    <tr>
+                                        <td *ngFor="let col of columns">{{rowData[col.field]}}</td>
+                                </ng-template>
+                            </p-table>
+                        </p-panel>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
