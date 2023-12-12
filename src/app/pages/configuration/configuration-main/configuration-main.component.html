@@ -9,18 +9,40 @@
 
                 <p-tabView [(activeIndex)]="activeIndex" [scrollable]="true" (onChange)="handleChange($event)">
 
-                    <p-tabPanel header="Atributos">
+                    <p-tabPanel header="Reglas">
                         <div class="card-body">
-                            <div class="grid">
+                            <p-panel header="Reglas" [toggleable]="true">
+                                <div class="grid fluid content">
+                                    <!-- ... Resto del código ... -->
+                                    <p-accordion *ngIf="procesos.length">
+                                        <p-accordion *ngIf="procesos.length">
+                                            <p-accordionTab *ngFor="let proceso of procesos" header="{{proceso.nombre}}">
+                                              <div *ngFor="let regla of proceso.reglas" class="regla-container">
+                                                <div class="regla-info">
+                                                  <h5>{{regla.nombre}}</h5>
+                                                  <p-dropdown [options]="regla.opciones"
+                                                              [(ngModel)]="regla.valorSeleccionado"
+                                                              placeholder="Seleccionar estado"
+                                                              (onChange)="cambiarEstadoRegla(regla)">
+                                                  </p-dropdown>
+                                                </div>
+                                                <!-- Mostrar la descripción aquí, fuera del <p-dropdown> -->
+                                                <p class="regla-descripcion">{{ regla.descripcion }}</p>
+                                              </div>
+                                            </p-accordionTab>
+                                          </p-accordion>
+                                    </p-accordion>
+                                </div>
                                 
+                                  
+                            </p-panel>
 
-                            </div>
                         </div>
 
                     </p-tabPanel>
-                    
+
                 </p-tabView>
-                
+
             </div>
         </div>
     </div>

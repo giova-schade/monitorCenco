@@ -1,3 +1,22 @@
 h1{
     color: black;
 }
+.proceso-container {
+    margin-top: 1em;
+}
+
+.regla-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.regla-info {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.regla-info h5 {
+    margin-bottom: 0.5em;
+}

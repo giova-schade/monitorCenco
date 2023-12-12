@@ -16,13 +16,15 @@ import { PanelModule } from 'primeng/panel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 
-
-
+import { FieldsetModule } from 'primeng/fieldset';
+import { AccordionModule } from 'primeng/accordion';
 @NgModule({
   declarations: [
     ConfigurationMainComponent
   ],
   imports: [
+    AccordionModule,
+    FieldsetModule,
     TabViewModule,
     CommonModule,
     ToastModule,
