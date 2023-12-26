@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { AuthService } from 'src/app/services/auth.services';
+import { HttpClientTestingModule } from '@angular/common/http/testing'; 
 
 import { FooterComponent } from "./footer.component";
 
@@ -8,7 +10,9 @@ describe("FooterComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FooterComponent]
+      declarations: [FooterComponent],
+      imports: [HttpClientTestingModule], 
+      providers: [AuthService]
     }).compileComponents();
   }));
 

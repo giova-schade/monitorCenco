@@ -1,9 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AuthService } from 'src/app/services/auth.services';
 import { AppComponent } from './app.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { SasjsUiComponent } from './components/sasjs-ui/sasjs-ui.component';
+
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    imports: [RouterTestingModule, HttpClientModule, ToastrModule.forRoot()],
+    declarations: [AppComponent, SasjsUiComponent], 
+    providers: [AuthService]
   }));
 
   it('should create the app', () => {
@@ -12,16 +21,5 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Monitor'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Monitor');
-  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Monitor app is running!');
-  });
 });

@@ -90,27 +90,32 @@ private transformarReglasAProcesos(datos: any): Proceso[] {
 }
 
 
-public cambiarEstadoRegla(regla: any , procNombre : string  ) {
-  // Puedes realizar operaciones adicionales aquí, por ejemplo, enviar los cambios al backend.
+public cambiarEstadoRegla(regla: Regla, procNombre: string) {
   this.loadingPage = true;
-  this.sasService.request('common/getReglas', null).then((respuesta: any) => {
-
-
-    
-  })
-  this.messageService.add({
-    severity: "warn",
-    detail:`El proceso ${procNombre} cuya  regla ${regla.nombre} ha sido ${regla.valorSeleccionado === 1 ? 'Activada' : 'Desactivada'}.`,
-  });
+  
   const payload = {
     nombreProc: procNombre,
     nombreRegla: regla.nombre,
     nuevoEstado: regla.valorSeleccionado
   };
 
-  console.log(payload)
-  this.loadingPage = false;
-
+  this.sasService.actualizarRegla('common/updateReglas',payload).then(
+    (respuesta: any) => {
+      this.messageService.add({
+        severity: "success",
+        detail: `El proceso ${procNombre} cuya regla ${regla.nombre} ha sido ${regla.valorSeleccionado === 1 ? 'Activada' : 'Desactivada'}.`,
+      });
+    },
+    (error: any) => {
+      this.messageService.add({
+        severity: "error",
+        detail: 'Error al actualizar la regla',
+      });
+      // Manejar el error
+    }
+  ).finally(() => {
+    this.loadingPage = false;
+  });
 }
 
 

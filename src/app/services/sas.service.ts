@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Role } from '../models/role';
 import { ReplaySubject } from 'rxjs';
 import { stringify } from 'querystring';
+import { Regla } from './regla.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -119,7 +120,52 @@ export class SasService {
         )
     })
   }
+  public actualizarRegla(url: string, regla: { nombreProc: string; nombreRegla: string; nuevoEstado: number }, config?: any): Promise<any>{
+    url = 'services/' + url
+    const data: { [key: string]: Array<{ [key: string]: any }> } = {
+      'reglaTable': []
+    };
 
+    const reglaData: { [key: string]: any } = {
+
+      'NombreProceso': regla.nombreProc,   
+      'NombreRegla': regla.nombreRegla,    
+      'NuevoEstado': regla.nuevoEstado     
+    };
+    data['reglaTable'].push(reglaData);
+
+    return new Promise((resolve, reject) => {
+      this.adapter
+        .request(url, data, config, () => {
+          this.stateService.setIsLoggedIn(false)
+        })
+        .then(
+          (res: any) => {
+            if (res.login === false) {
+              this.stateService.setIsLoggedIn(false)
+              this.stateService.username.next('')
+              reject(false)
+            }
+
+            if (
+              this.stateService.username.getValue().length < 1 &&
+              res.MF_GETUSER
+            ) {
+              this.stateService.username.next(res.MF_GETUSER)
+            }
+
+            if (res.status === 404) {
+              reject({ MESSAGE: res.body || 'SAS responded with an error' })
+            }
+
+            resolve(res)
+          },
+          (err: any) => {
+            reject(err)
+          }
+        )
+    })
+  }
 
   public async login(username: string, password: string) {
     return this.adapter
@@ -212,5 +258,7 @@ export class SasService {
         )
     })
   }
+
+  
 
 }
