@@ -16,25 +16,26 @@
                                     <!-- ... Resto del código ... -->
                                     <p-accordion *ngIf="procesos.length">
                                         <p-accordion *ngIf="procesos.length">
-                                            <p-accordionTab *ngFor="let proceso of procesos" header="{{proceso.nombre}}">
-                                              <div *ngFor="let regla of proceso.reglas" class="regla-container">
-                                                <div class="regla-info">
-                                                  <h5>{{regla.nombre}}</h5>
-                                                  <p-dropdown [options]="regla.opciones"
-                                                              [(ngModel)]="regla.valorSeleccionado"
-                                                              placeholder="Seleccionar estado"
-                                                              (onChange)="cambiarEstadoRegla(regla)">
-                                                  </p-dropdown>
+                                            <p-accordionTab *ngFor="let proceso of procesos"
+                                                header="{{proceso.nombre}}">
+                                                <div *ngFor="let regla of proceso.reglas" class="regla-container">
+                                                    <div class="regla-info">
+                                                        <h5>{{regla.nombre}}</h5>
+                                                        <p-dropdown [options]="regla.opciones"
+                                                            [(ngModel)]="regla.valorSeleccionado"
+                                                            placeholder="Seleccionar estado"
+                                                            (onChange)="cambiarEstadoRegla(regla, proceso.nombre)">
+                                                        </p-dropdown>
+                                                    </div>
+                                                    <!-- Mostrar la descripción aquí, fuera del <p-dropdown> -->
+                                                    <p class="regla-descripcion">{{ regla.descripcion }}</p>
                                                 </div>
-                                                <!-- Mostrar la descripción aquí, fuera del <p-dropdown> -->
-                                                <p class="regla-descripcion">{{ regla.descripcion }}</p>
-                                              </div>
                                             </p-accordionTab>
-                                          </p-accordion>
+                                        </p-accordion>
                                     </p-accordion>
                                 </div>
-                                
-                                  
+
+
                             </p-panel>
 
                         </div>

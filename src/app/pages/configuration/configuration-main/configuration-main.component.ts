@@ -67,11 +67,11 @@ private transformarReglasAProcesos(datos: any): Proceso[] {
 
         const reglasProceso = datos[key][0];
         Object.keys(reglasProceso).forEach(nombreRegla => {
-          if (!nombreRegla.includes('Desc') && !nombreRegla.includes('_desc')) { // Asegúrate de excluir descripciones
+          if (!nombreRegla.includes('Desc') && !nombreRegla.includes('_desc')) { 
             const regla: Regla = {
               nombre: nombreRegla,
               valorSeleccionado: reglasProceso[nombreRegla],
-              descripcion: reglasProceso[`${nombreRegla}Desc`] || '', // Asume que la descripción sigue este patrón
+              descripcion: reglasProceso[`${nombreRegla}Desc`] || '', 
               opciones: [
                 { label: 'Activado', value: 1 },
                 { label: 'Desactivado', value: 0 }
@@ -90,18 +90,27 @@ private transformarReglasAProcesos(datos: any): Proceso[] {
 }
 
 
-public cambiarEstadoRegla(regla: any) {
+public cambiarEstadoRegla(regla: any , procNombre : string  ) {
   // Puedes realizar operaciones adicionales aquí, por ejemplo, enviar los cambios al backend.
-  
-  console.log(`La regla ${regla.nombre} ha sido cambiada a ${regla.estado}`);
-  
-  // Suponiendo que quieras enviar el cambio al backend:
+  this.loadingPage = true;
+  this.sasService.request('common/getReglas', null).then((respuesta: any) => {
+
+
+    
+  })
+  this.messageService.add({
+    severity: "warn",
+    detail:`El proceso ${procNombre} cuya  regla ${regla.nombre} ha sido ${regla.valorSeleccionado === 1 ? 'Activada' : 'Desactivada'}.`,
+  });
   const payload = {
+    nombreProc: procNombre,
     nombreRegla: regla.nombre,
-    nuevoEstado: regla.estado
+    nuevoEstado: regla.valorSeleccionado
   };
 
   console.log(payload)
+  this.loadingPage = false;
+
 }
 
 
