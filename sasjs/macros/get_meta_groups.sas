@@ -57,7 +57,7 @@
   data _null_;
     set meta_groups;
 
-    if  group eq 'BEADM' then
+    if  group eq 'MonitorAdmin' then
         do;
             /*Se excluye los Roles y BD Potsgres*/
             call symput('role_' , group);

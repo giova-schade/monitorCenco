@@ -8,9 +8,19 @@
   @li get_meta_groups.sas
 
 **/
+/*cargo datos desde la web para almacenarlos en la work */
+%webout(FETCH);
 
+%global  dtlog;
+%let dtlog = %sysfunc(compress(%sysfunc(putn(%sysfunc(date()),yymmdd7.))))_%sysfunc(compress(%sysfunc(tranwrd(%sysfunc(putn(%sysfunc(time()),time.)),:,))));
+proc printto log="/sasdata/opt/data/sas_psd/Procesos/logs/MonitorAppInit_&dtlog.log";
+run;
+/*llamo a macro function desde la carpeta de macros al proceso get_meta_groups */
 %get_meta_groups(_user="%mf_getuser()",outds=work.groups)
 
+
 %webout(OPEN)
+
 %webout(OBJ,groups)
+%webout(OBJ,config)
 %webout(CLOSE)

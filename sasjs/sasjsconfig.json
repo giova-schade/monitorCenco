@@ -37,9 +37,12 @@
     },
     {
       "name": "Monitor",
-      "serverUrl": "http://clsmv3sas011.cencosud.corp:7980",
+      "serverUrl": "http://clsmv3sas010.cencosud.corp:7980",
       "serverType": "SAS9",
-      "appLoc": "/Public/app/Monitor",
+      "httpsAgentOptions": {
+        "allowInsecureRequests": false
+      },
+      "appLoc": "/Cencosud/Monitor/sas9",
       "deployConfig": {
         "deployServicePack": true,
         "deployScripts": []

@@ -8,11 +8,11 @@
   @li mf_mkdir.sas
 
 **/
-
+/*
 %let libloc=/sasdatad/apps/be/migracion;
 
 %mf_mkdir(&libloc)
 
-libname besasgc "&libloc";
+libname besasgc "&libloc";*/
 
 

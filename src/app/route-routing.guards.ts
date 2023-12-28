@@ -11,13 +11,28 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router, private authService: AuthService, private sasService: SasService) { }
 
     private valorRetorno: boolean = false;
-
+    private transformConfig(config: any[]): any[] {
+        return config.reduce((acc, current) => {
+          let found = acc.find((item:any) => item.name === current.ROL);
+          if (found) {
+            found.permissions.push(current.permission);
+          } else {
+            acc.push({
+              name: current.ROL,
+              permissions: [current.permission]
+            });
+          }
+          return acc;
+        }, []);
+      }
     canActivate(route: ActivatedRouteSnapshot): Promise<boolean> | boolean { 
         return this.sasService.request('common/appinit', null).then((response: any) => {
-            const confiUser = response.config.find((role: any) => role.name === response.groups[0].ROLE);
-            this.authService.updatePermissionsFromApiResponse(response.config);
+            const transformedConfig = this.transformConfig(response.config);
+            const confiUser = transformedConfig.find((config: any) => config.name === response.groups[0].ROLE);
+    
+            this.authService.updatePermissionsFromApiResponse(transformedConfig);
         
-            this.sasService.SetLogin(response.groups[0].ROLE,response.groups[0].NOMBRE,'',confiUser.permissions);
+            this.sasService.SetLogin(response.groups[0].ROLE, response.groups[0].NOMBRE, '', confiUser.permissions);
 
             if (!this.authService.isAuthorized()) {
                 this.router.navigate(['access-denied']);
