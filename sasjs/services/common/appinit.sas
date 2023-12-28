@@ -18,7 +18,17 @@ run;
 /*llamo a macro function desde la carpeta de macros al proceso get_meta_groups */
 %get_meta_groups(_user="%mf_getuser()",outds=work.groups)
 
-
+data config;
+  infile datalines dsd dlm=','; 
+  input ROL : $20. permision : $20.;
+datalines;
+MonitorAdmin,Home
+MonitorAdmin,UploadInput
+MonitorAdmin,Configuration
+MonitorAdmin,ProcessExecutions
+User,Home
+;
+run;
 %webout(OPEN)
 
 %webout(OBJ,groups)
