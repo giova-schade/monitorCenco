@@ -9,5 +9,6 @@ export enum MonitorAdmin {
   Home = 'Yes',
   UploadInput='Yes',
   Configuration='Yes',
-  ProcessExecutions='Yes'
+  ProcessExecutions='Yes',
+  Reprocess='Yes'
 }

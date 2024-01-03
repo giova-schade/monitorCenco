@@ -9,14 +9,26 @@ _webout = `{
   ],
   "config": [
     {
-      "name": "MonitorAdmin",
-      "permissions": ["Home", "UploadInput", "Configuration", "ProcessExecutions"]
+        "ROL": "MonitorAdmin",
+        "permission": "Home"
     },
     {
-      "name": "User",
-      "permissions": ["Home"]
+        "ROL": "MonitorAdmin",
+        "permission": "UploadInput"
+    },
+    {
+        "ROL": "MonitorAdmin",
+        "permission": "Configuration"
+    },
+    {
+        "ROL": "MonitorAdmin",
+        "permission": "ProcessExecutions"
+    },
+    {
+        "ROL": "User",
+        "permission": "Home"
     }
-  ],
+],
   "_DEBUG": "",
   "_METAUSER": "ricardo.quezada",
   "_METAPERSON": "s14325174",

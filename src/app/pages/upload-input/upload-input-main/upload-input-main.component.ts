@@ -19,6 +19,8 @@ interface TabConfig {
 
 
 export class UploadInputMainComponent {
+  public clavesDatos: string[] = [];
+  public respuestaDat: any;
   activeIndex: number = 0;
   loadingPage: boolean;
   files: any[] = [];
@@ -63,15 +65,19 @@ export class UploadInputMainComponent {
     this.loadingPage = true;
 
     this.sasService.request('common/getConfig', null).then((res: any) => {
-      const estado = res.status[0].Estado;
+      const estado = res.status[0].ESTADO;
 
       if (estado.toLowerCase() === "ok") {
         this.setTabConfigurations(res.datos);
         const config = this.getConfigByIndex(1);
+
         this.sasService.getDataField('common/getDataField', config.name).then((respuesta: any) => {
-          const estadoRes = respuesta.status[0].Estado;
+          const estadoRes = respuesta.status[0].ESTADO;
+          this.respuestaDat = respuesta;
+          this.clavesDatos = Object.keys(respuesta).filter(key => key.startsWith('datos'));
+
           if (estadoRes.toLowerCase() === "ok") {
-            this.actualizarTabla(respuesta.datos);
+            this.actualizarTabla(this.clavesDatos[0]);
           } else {
             this.messageService.add({
               severity: "warn",
@@ -106,9 +112,11 @@ export class UploadInputMainComponent {
     this.loadingPage = true;
     const config = this.getConfigByIndex(event.index + 1);
     this.sasService.getDataField('common/getDataField', config.name).then((respuesta: any) => {
-      const estadoRes = respuesta.status[0].Estado;
+      const estadoRes = respuesta.status[0].ESTADO;
+      this.respuestaDat = respuesta;
+      this.clavesDatos = Object.keys(respuesta).filter(key => key.startsWith('datos'));
       if (estadoRes.toLowerCase() === "ok") {
-        this.actualizarTabla(respuesta.datos);
+        this.actualizarTabla(this.clavesDatos[0]);
       } else {
         this.messageService.add({
           severity: "warn",
@@ -126,40 +134,49 @@ export class UploadInputMainComponent {
 
   }
 
-  private actualizarTabla(datos: any[]): void {
-    this.Fieldview = false;
+  public actualizarTabla(claveDatos: string): void {
+    // Asegúrate de que la respuesta tiene la clave proporcionada
+    if (this.respuestaDat && this.respuestaDat.hasOwnProperty(claveDatos)) {
+      const datos = this.respuestaDat[claveDatos];
 
-    // Limpiar datos y columnas existentes
-    this.datasource = [];
-    this.fieldCampos = [];
 
-    // Verificar si los datos están vacíos
-    if (!datos || datos.length === 0) {
-      return;
+      this.Fieldview = false;
+
+      // Limpiar datos y columnas existentes
+      this.datasource = [];
+      this.fieldCampos = [];
+
+      // Verificar si los datos están vacíos
+      if (!datos || datos.length === 0) {
+        return;
+      }
+
+      // Asignar los datos a la fuente de datos
+      this.datasource = datos;
+
+      // Utilizar las claves del primer objeto para definir las columnas
+      Object.keys(datos[0]).forEach(key => {
+        this.fieldCampos.push({ field: key, header: key });
+      });
+      this.Fieldview = true;
+    } else {
+      // Manejar el caso en que la clave no esté en la respuesta
     }
 
-    // Asignar los datos a la fuente de datos
-    this.datasource = datos;
-
-    // Utilizar las claves del primer objeto para definir las columnas
-    Object.keys(datos[0]).forEach(key => {
-      this.fieldCampos.push({ field: key, header: key });
-    });
-    this.Fieldview = true;
   }
 
   private setTabConfigurations(datos: any[]) {
     this.extensionMap = {};
 
     datos.forEach(dato => {
-      const mimeType = this.convertToMimeType(dato.extencion);
+      const mimeType = this.convertToMimeType(dato.EXTENCION);
       this.extensionMap[dato.file] = mimeType;
 
       this.tabConfigurations.push({
-        fileIndex: dato.file,
-        name: dato.name,
-        extension: dato.extencion,
-        urlDownload: dato.urlDownload,
+        fileIndex: parseInt(dato.FILE),
+        name: dato.NAME,
+        extension: dato.EXTENCION,
+        urlDownload: dato.URLDOWNLOAD,
         mimeType: mimeType
       });
     });
@@ -183,7 +200,6 @@ export class UploadInputMainComponent {
       mimeType: '',
       urlDownload: '' // Asegúrate de agregar esta propiedad a tu interfaz TabConfig si es necesaria
     };
-
     return this.tabConfigurations.find(config => config.fileIndex === index) || defaultConfig;
   }
   public Cback() {

@@ -45,6 +45,8 @@ export class SasService {
 
     }
   }
+
+
   public getDataField(url: string, field: any, config?: any){
     url = 'services/' + url
     const data: { [key: string]: Array<{ [key: string]: any }> } = {
@@ -87,6 +89,51 @@ export class SasService {
   }
   public request(url: string, data: any, config?: any) {
     url = 'services/' + url
+
+    return new Promise((resolve, reject) => {
+      this.adapter
+        .request(url, data, config, () => {
+          this.stateService.setIsLoggedIn(false)
+        })
+        .then(
+          (res: any) => {
+            if (res.login === false) {
+              this.stateService.setIsLoggedIn(false)
+              this.stateService.username.next('')
+              reject(false)
+            }
+
+            if (
+              this.stateService.username.getValue().length < 1 &&
+              res.MF_GETUSER
+            ) {
+              this.stateService.username.next(res.MF_GETUSER)
+            }
+
+            if (res.status === 404) {
+              reject({ MESSAGE: res.body || 'SAS responded with an error' })
+            }
+
+            resolve(res)
+          },
+          (err: any) => {
+            reject(err)
+          }
+        )
+    })
+  }
+
+  public ejecutarReProceso(url: string,id_proceso: string, config?: any): Promise<any>{
+    url = 'services/' + url
+    const data: { [key: string]: Array<{ [key: string]: any }> } = {
+      'reRunTable': []
+    };
+
+    const reRunData: { [key: string]: any } = {
+
+      'id_proceso': id_proceso   
+    };
+    data['reRunTable'].push(reRunData);
 
     return new Promise((resolve, reject) => {
       this.adapter

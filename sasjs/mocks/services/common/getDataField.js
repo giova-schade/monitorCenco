@@ -2,7 +2,7 @@ _webout = `{
     "SYSDATE": "05OCT23",
     "SYSTIME": "14:33",
     "status" : [{
-        "Estado": "ok",
+        "ESTADO": "ok",
         "MENSAJE" : ""
     }],
     "datos":[

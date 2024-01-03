@@ -1,109 +1,111 @@
 _webout = `{
-    "SYSDATE": "05OCT23",
-    "SYSTIME": "14:33",
-    "status" : [{
-        "Estado": "ok",
-        "MENSAJE" : ""
-    }],
-    "datos": [
-        {
-          "file": 1,
-          "name": "Atributos",
-          "extencion": "txt",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 2,
-          "name": "Categoria Subrubros",
-          "extencion": "txt",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 3,
-          "name": "Cristerio Envio SAP",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 4,
-          "name": "Definicion Ejecución Procesos Analiticos",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 5,
-          "name": "Promociones Cruzadas",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 6,
-          "name": "Cierre locales domingo",
-          "extencion": "txt",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 7,
-          "name": "Categorias Bloque1",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 8,
-          "name": "Productos y tiendas espejo",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 9,
-          "name": "Eventos",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 10,
-          "name": "RAPEL",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 11,
-          "name": "ILA",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 12,
-          "name": "Parametros por defecto simulador",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        },
-        {
-          "file": 13,
-          "name": "Reprocesos analiticos",
-          "extencion": "xlsx",
-          "urlDownload" : "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
-        }
-      ],
-    "_DEBUG": "",
-    "_METAUSER": "ricardo.quezada",
-    "_METAPERSON": "s14325174",
-    "_PROGRAM": "/Boleta/Migracion/sas9/services/common/appinit",
-    "AUTOEXEC": "%2Fsasbin%2FSASConfig%2FLev1%2FSASAppEGRC%2FWorkspaceServer%2Fautoexec.sas",
-    "MF_GETUSER": "s14325174",
-    "SYSCC": "0",
-    "SYSENCODING": "utf-8",
-    "SYSERRORTEXT": "",
-    "SYSHOSTNAME": "sascsdes301",
-    "SYSPROCESSID": "41DDFBB02B4EBF2B4034000000000000",
-    "SYSPROCESSMODE": "SAS Workspace Server",
-    "SYSPROCESSNAME": "",
-    "SYSJOBID": "47743",
-    "SYSSCPL": "Linux",
-    "SYSSITE": "70205261",
-    "SYSUSERID": "ricardo.quezada",
-    "SYSVLONG": "9.04.01M7P080620",
-    "SYSWARNINGTEXT": "",
-    "END_DTTM": "2023-10-05T14:33:20.161978",
-    "MEMSIZE": "10GB"
-  }`
+  "SYSDATE": "02JAN24",
+  "SYSTIME": "17:39",
+  "datos": [
+      {
+          "FILE": "1",
+          "NAME": "Atributos",
+          "EXTENCION": "txt",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "2",
+          "NAME": "Categoria_Subrubros",
+          "EXTENCION": "txt",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "3",
+          "NAME": "Cristerio_Envio_SAP",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "4",
+          "NAME": "Definicion_Ejecucion_Procesos_Analiticos",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "5",
+          "NAME": "Promociones_Cruzadas",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "6",
+          "NAME": "Cierre_locales_domingo",
+          "EXTENCION": "txt",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "7",
+          "NAME": "Categorias_Bloque1",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "8",
+          "NAME": "Productos_y_tiendas_espejo",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "9",
+          "NAME": "Eventos",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "10",
+          "NAME": "RAPEL",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "11",
+          "NAME": "ILA",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "12",
+          "NAME": "Parametros_por_defecto_simulador",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      },
+      {
+          "FILE": "13",
+          "NAME": "Reprocesos_analiticos",
+          "EXTENCION": "xlsx",
+          "URLDOWNLOAD": "https://filesamples.com/samples/document/xlsx/sample1.xlsx"
+      }
+  ],
+  "status": [
+      {
+          "ESTADO": "ok",
+          "MENSAJE": ""
+      }
+  ],
+  "_DEBUG": "",
+  "_METAUSER": "sas_etl",
+  "_METAPERSON": "sas_etl",
+  "_PROGRAM": "/Cencosud/Monitor/sas9/services/common/getConfig",
+  "AUTOEXEC": "%2Fsasbin%2Fconfig%2FLev1%2FSASApp%2FWorkspaceServer%2Fautoexec.sas",
+  "MF_GETUSER": "sas_etl",
+  "SYSCC": "0",
+  "SYSENCODING": "latin1",
+  "SYSERRORTEXT": "",
+  "SYSHOSTNAME": "clsmv3sas011",
+  "SYSPROCESSID": "41DE19106F3A92F3402E000000000000",
+  "SYSPROCESSMODE": "SAS Workspace Server",
+  "SYSPROCESSNAME": "",
+  "SYSJOBID": "26032",
+  "SYSSCPL": "Linux",
+  "SYSSITE": "70200006",
+  "SYSUSERID": "sas_etl",
+  "SYSVLONG": "9.04.01M7P080620",
+  "SYSWARNINGTEXT": "ENCODING option ignored for files opened with RECFM=N.",
+  "END_DTTM": "2024-01-02T17:39:09.032769",
+  "MEMSIZE": "4GB"
+}`

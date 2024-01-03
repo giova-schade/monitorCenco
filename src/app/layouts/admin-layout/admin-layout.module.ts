@@ -10,6 +10,7 @@ import {  HomeModule } from "../../pages/home/home.module";
 import {  ConfigurationModule } from "../../pages/configuration/configuration.module";
 import {  ProcessExecutionsModule } from "../../pages/process-executions/process-executions.module";
 import {  UploadInputModule } from "../../pages/upload-input/upload-input.module";
+import {  ReprocessModule } from "../../pages/reprocess/reprocess.module";
 
 
 
@@ -65,7 +66,8 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     HomeModule,
     ConfigurationModule,
     ProcessExecutionsModule,
-    UploadInputModule
+    UploadInputModule,
+    ReprocessModule
     
   ],
   declarations: [
