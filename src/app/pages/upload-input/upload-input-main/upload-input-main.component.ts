@@ -81,7 +81,7 @@ export class UploadInputMainComponent {
           } else {
             this.messageService.add({
               severity: "warn",
-              detail: respuesta.result[0].MENSAJE,
+              detail: respuesta.status[0].MENSAJE,
             });
           }
           this.loadingPage = false;
@@ -120,7 +120,7 @@ export class UploadInputMainComponent {
       } else {
         this.messageService.add({
           severity: "warn",
-          detail: respuesta.result[0].MENSAJE,
+          detail: respuesta.status[0].MENSAJE,
         });
       }
       this.loadingPage = false;
@@ -170,7 +170,7 @@ export class UploadInputMainComponent {
 
     datos.forEach(dato => {
       const mimeType = this.convertToMimeType(dato.EXTENCION);
-      this.extensionMap[dato.file] = mimeType;
+      this.extensionMap[dato.FILE] = mimeType;
 
       this.tabConfigurations.push({
         fileIndex: parseInt(dato.FILE),
@@ -308,15 +308,20 @@ export class UploadInputMainComponent {
       tabInfo: config.name
     };
 
-    // Aquí, debes llamar a tu servicio para subir el archivo
-    this.sasService.uploadFile('/putFile', [uploadFile], additionalParams).then((response: any) => {
+    this.loadingPage = true;
+
+    this.sasService.uploadFile('services/common/putFile', [uploadFile], additionalParams).then((response: any) => {
       // Manejar la respuesta del servidor SAS
+    this.loadingPage = false;
+
       console.log('Archivo subido con éxito:', response);
       this.messageService.add({
         severity: "success",
         detail: `Archivo ${fileToUpload.name} subido con éxito`,
       });
     }).catch((error: any) => {
+    this.loadingPage = false;
+
       console.error('Error al subir el archivo:', error);
       this.messageService.add({
         severity: "error",

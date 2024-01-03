@@ -241,6 +241,7 @@ export class SasService {
   }
 
   public uploadFile(sasService: string, files: UploadFile[], params?: any) {
+    
     return this.adapter.uploadFile(sasService, files, params)
   }
 
