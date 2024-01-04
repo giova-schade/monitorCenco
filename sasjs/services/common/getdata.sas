@@ -14,6 +14,9 @@
 %let dtlog = %sysfunc(compress(%sysfunc(putn(%sysfunc(date()),yymmdd7.))))_%sysfunc(compress(%sysfunc(tranwrd(%sysfunc(putn(%sysfunc(time()),time.)),:,))));
 proc printto log="/sasdata/opt/data/sas_psd/Procesos/logs/getdata&dtlog.log";
 run;
+%put giovanni;
+
+
 
 proc sql;
 create table springs as select *

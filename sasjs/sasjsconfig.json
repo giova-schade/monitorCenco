@@ -19,7 +19,7 @@
     ],
     "initProgram": "sasjs/init.sas"
   },
-  "defaultTarget": "boleta",
+  "defaultTarget": "Monitor",
   "targets": [
     {
       "name": "server",
